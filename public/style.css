@@ -1,0 +1,14 @@
+#usersDetails > h2 {
+    text-align: center;
+    color: brown;
+}
+
+#usersDetails #usersTable #t_head th{
+    padding: 10px;
+    border: 1px solid black;
+}
+
+/* #usersDetail table t_head tr{
+    padding: 10px;
+    border: 1px solid black;
+} */
