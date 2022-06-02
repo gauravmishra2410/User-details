@@ -1,37 +1,39 @@
-let elem = document.getElementById('t_body');
-let url = 'http://localhost:3000';
-// fetch(url).then(response => {
-//     if(!response.ok) {
-//         throw new Error(`HTTP error: ${response.status}`);
+// const axios = require('axios');
 
-//     }
-//     console.log(response.data);
-//     return response.data()
-//     .then(data => elem.textContent = data)
-//     .catch(error => elem.textContent = `Could not fetch: ${error}`);
-// })
+let apiUrl = 'http://localhost:3000/users';
 
-// getData();
-function getData() {
-  fetch('http://localhost:3000/users', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'text/plain',
-    },
-  }).then(function (response) {
-    return response;
+async function getData() {
+  try {
+    let res = await fetch('http://localhost:3000/users');
+
+    // console.log(res);
+
+    let response = await res.json();
+    // console.log('response: ', response.users);
+    showData(response.users);
+    // appendData(response);
+  } catch (err) {
+    console.log(err);
+  }
+}
+getData();
+let table = document.getElementById('t_body');
+async function showData(data) {
+  console.log('DataUsers', data);
+
+  data.map((el) => {
+    let tr1 = document.createElement('tr');
+    let td1 = document.createElement('td');
+    td1.innerHTML = el.name;
+    let td2 = document.createElement('td');
+    td2.innerHTML = el.email;
+    let td3 = document.createElement('td');
+    td3.innerHTML = el.father_name;
+    let td4 = document.createElement('td');
+    td4.innerHTML = el.mother_name;
+    tr1.append(td1, td2, td3, td4);
+
+    table.append(tr1);
   });
 }
 
-// const getData = async () => {
-//   try {
-//     const response = await axios.get(`${url}/users`);
-//     const data = response.data;
-//     console.log('UserDetails', data);
-
-//     return data;
-//   } catch (errors) {
-//     console.log(errors);
-//   }
-// };
-getData();
